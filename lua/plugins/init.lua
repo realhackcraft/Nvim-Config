@@ -9,7 +9,7 @@ return {
   },
   {
     "errornonamer/cmp-tabby",
-    build = "./install.sh --vulkan",
+    build = "./install.sh",
     dependencies = "hrsh7th/nvim-cmp",
   },
   {
