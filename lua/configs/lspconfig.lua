@@ -4,7 +4,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "clangd", "arduino_language_server", "pyright" }
+local servers = { "html", "cssls", "clangd", "pyright", "biome" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -15,6 +15,18 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- ARDUINO
+local MY_FQBN = "arduino:avr:leonardo"
+lspconfig.arduino_language_server.setup {
+    cmd = {
+        "arduino-language-server",
+        "-cli-config", "$HOME/.arduino15/arduino-cli.yaml",
+        "-fqbn",
+        MY_FQBN
+    }
+}
+
+-- KEYBINDS
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})

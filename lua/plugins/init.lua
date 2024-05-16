@@ -15,16 +15,11 @@ return {
       },
     },
     -- Everything in opts will be passed to setup()
-    opts = require "configs.conform",
+    opts = require "conform",
     init = function()
       -- If you want the formatexpr, here is the place to set it
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
-  },
-  {
-    "errornonamer/cmp-tabby",
-    build = "./install.sh",
-    dependencies = "hrsh7th/nvim-cmp",
   },
   {
     "xiyaowong/transparent.nvim",
@@ -56,13 +51,22 @@ return {
       require "configs.lspconfig"
     end,
   },
-
-  -- These are some examples, uncomment them if you want to see them work!
-
   {
-    "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      'williamboman/mason.nvim',
+    },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          'arduino_language_server',
+          -- We need to install clangd for arduino_language_server to work
+          'clangd'
+        }
+      })
+    end
   },
+  -- These are some examples, uncomment them if you want to see them work!
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -70,6 +74,7 @@ return {
         "vim",
         "lua",
         "vimdoc",
+        "javascript",
         "html",
         "css",
         "python",
