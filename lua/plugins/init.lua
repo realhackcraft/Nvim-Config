@@ -54,17 +54,17 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
-      'williamboman/mason.nvim',
+      "williamboman/mason.nvim",
     },
     config = function()
-      require("mason-lspconfig").setup({
+      require("mason-lspconfig").setup {
         ensure_installed = {
-          'arduino_language_server',
+          "arduino_language_server",
           -- We need to install clangd for arduino_language_server to work
-          'clangd'
-        }
-      })
-    end
+          "clangd",
+        },
+      }
+    end,
   },
   -- These are some examples, uncomment them if you want to see them work!
   {
@@ -80,6 +80,30 @@ return {
         "python",
         "bash",
       },
+      auto_install = true,
     },
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "folke/trouble.nvim" },
+    opts = {},
+    lazy = false,
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end,
   },
 }
