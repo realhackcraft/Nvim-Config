@@ -24,4 +24,8 @@ if g.neovide then
   g.neovide_fullscreen = true
   g.neovide_input_macos_option_key_is_meta = 'only_right'
   g.neovide_cursor_smooth_blink = true
+
+  g.neovide_cursor_vfx_mode = "railgun"
+  g.neovide_cursor_vfx_particle_density = 10.0
+  g.neovide_cursor_vfx_particle_curl = 2.0
 end
