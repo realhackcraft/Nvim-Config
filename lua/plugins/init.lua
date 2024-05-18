@@ -128,5 +128,12 @@ return {
     keys = {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
     }
+  },
+  {
+    "nacro90/numb.nvim",
+    config = function ()
+      require("numb").setup()
+    end,
+    lazy=false
   }
 }
