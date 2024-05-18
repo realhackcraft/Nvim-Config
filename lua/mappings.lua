@@ -15,6 +15,14 @@ map("n", "[t", function()
   require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
 
+if vim.g.neovide then
+  map('n', '<D-s>', ':w<CR>') -- Save
+  map('v', '<D-c>', '"+y') -- Copy
+  map('n', '<D-v>', '"+P') -- Paste normal mode
+  map('v', '<D-v>', '"+P') -- Paste visual mode
+  map('c', '<D-v>', '<C-R>+') -- Paste command mode
+  map('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+end
 
 if vim.g.neovide then
   map('n', '<D-s>', ':w<CR>') -- Save

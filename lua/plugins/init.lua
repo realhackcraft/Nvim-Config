@@ -22,13 +22,6 @@ return {
     end,
   },
   {
-    "xiyaowong/transparent.nvim",
-    lazy = false,
-    config = function()
-      require "configs.transparent"
-    end,
-  },
-  {
     "TabbyML/vim-tabby",
     lazy = false,
   },
