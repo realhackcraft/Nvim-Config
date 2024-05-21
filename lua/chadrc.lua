@@ -1,11 +1,12 @@
--- This file  needs to have same structure as nvconfig.lua 
+-- This file  needs to have same structure as nvconfig.lua
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
 
 ---@type ChadrcConfig
 local M = {}
 
 M.ui = {
-	theme = "onedark",
+  theme = "material-darker",
+  theme_toggle = { "material-darker", "material-lighter" },
 
   cmp = {
     icons = true,
@@ -20,7 +21,7 @@ M.ui = {
     order = nil,
     modules = nil,
   },
-    tabufline = {
+  tabufline = {
     enabled = true,
     lazyload = true,
     order = { "treeOffset", "buffers", "tabs", "btns" },
@@ -50,10 +51,10 @@ M.ui = {
       { "  Mappings", "Space c h", "NvCheatsheet" },
     },
   },
-	 hl_override = {
-		Comment = { italic = true },
-		["@comment"] = { italic = true },
-	},
+  hl_override = {
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
+  },
 }
 
 return M

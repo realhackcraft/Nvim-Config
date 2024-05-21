@@ -33,10 +33,6 @@ return {
     end,
   },
   {
-    "tpope/vim-fugitive",
-    event = "VeryLazy",
-  },
-  {
     "neovim/nvim-lspconfig",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
@@ -100,52 +96,52 @@ return {
   },
   {
     "nacro90/numb.nvim",
-    config = function ()
+    config = function()
       require("numb").setup()
     end,
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
   {
-        "jay-babu/mason-null-ls.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-          "williamboman/mason.nvim",
-          "nvimtools/none-ls.nvim",
-        },
-        config = function()
-          require("configs.null-ls") -- require your null-ls config here (example below)
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "nvimtools/none-ls.nvim",
+    },
+    config = function()
+      require "configs.null-ls" -- require your null-ls config here (example below)
     end,
   },
   {
     "dstein64/vim-startuptime",
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
-      require("nvim-surround").setup({
+      require("nvim-surround").setup {
         -- Configuration here, or leave empty to use defaults
-      })
-    end
+      }
+    end,
   },
   {
     "MeanderingProgrammer/markdown.nvim",
     name = "render-markdown",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter"
+      "nvim-treesitter/nvim-treesitter",
     },
     config = function()
-      require("render-markdown").setup{}
+      require("render-markdown").setup {}
     end,
     event = "VeryLazy",
   },
   {
     "NeogitOrg/neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "sindrets/diffview.nvim",        -- optional - Diff integration
+      "nvim-lua/plenary.nvim", -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
 
       -- Only one of these is needed, not both.
       "nvim-telescope/telescope.nvim", -- optional
@@ -153,5 +149,20 @@ return {
     },
     config = true,
     event = "VeryLazy",
-  }
+  },
+  {
+    "Bekaboo/dropbar.nvim",
+    -- optional, but required for fuzzy finder support
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+    },
+    event = "VeryLazy",
+  },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    config = function()
+      require("rainbow-delimiters.setup").setup {}
+    end,
+    event = "VeryLazy",
+  },
 }
