@@ -4,6 +4,7 @@ require "nvchad.options"
 
 local o = vim.o
 local g = vim.g
+local wo = vim.wo
 
 o.cursorlineopt = "both" -- to enable cursorline!
 o.colorcolumn = "80"
@@ -14,6 +15,20 @@ g.editorconfig = true
 g.python_indent = {}
 
 g.tabby_keybinding_accept = '<C-a>'
+
+wo.relativenumber = true
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(nil, nil)
+    end
+    -- whatever other lsp config you want
+  end
+})
+
 
 if g.neovide then
   g.neovide_hide_mouse_when_typing = true

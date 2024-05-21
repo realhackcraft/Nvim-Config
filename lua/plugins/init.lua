@@ -23,7 +23,6 @@ return {
   },
   {
     "TabbyML/vim-tabby",
-    lazy = false,
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -35,7 +34,7 @@ return {
   },
   {
     "tpope/vim-fugitive",
-    lazy = false,
+    event = "VeryLazy",
   },
   {
     "neovim/nvim-lspconfig",
@@ -89,7 +88,7 @@ return {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "folke/trouble.nvim" },
     opts = {},
-    lazy = false,
+    event = "VeryLazy",
   },
   {
     "ray-x/lsp_signature.nvim",
@@ -100,33 +99,59 @@ return {
     end,
   },
   {
-    "kdheepak/lazygit.nvim",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    -- optional for floating window border decoration
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    config = function()
-      require("telescope").load_extension("lazygit")
-    end,
-    -- setting the keybinding for LazyGit with 'keys' is recommended in
-    -- order to load the plugin when the command is run for the first time
-    keys = {
-      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-    }
-  },
-  {
     "nacro90/numb.nvim",
     config = function ()
       require("numb").setup()
     end,
-    lazy=false
+    event = "VeryLazy"
+  },
+  {
+        "jay-babu/mason-null-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+          "williamboman/mason.nvim",
+          "nvimtools/none-ls.nvim",
+        },
+        config = function()
+          require("configs.null-ls") -- require your null-ls config here (example below)
+    end,
+  },
+  {
+    "dstein64/vim-startuptime",
+    event = "VeryLazy"
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
+  {
+    "MeanderingProgrammer/markdown.nvim",
+    name = "render-markdown",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter"
+    },
+    config = function()
+      require("render-markdown").setup{}
+    end,
+    event = "VeryLazy",
+  },
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
+
+      -- Only one of these is needed, not both.
+      "nvim-telescope/telescope.nvim", -- optional
+      -- "ibhagwan/fzf-lua",              -- optional
+    },
+    config = true,
+    event = "VeryLazy",
   }
 }
