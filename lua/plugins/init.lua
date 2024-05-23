@@ -89,9 +89,8 @@ return {
   {
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
-    opts = {},
-    config = function(_, opts)
-      require("lsp_signature").setup(opts)
+    config = function(_)
+      require "configs.lsp_signature"
     end,
   },
   {
@@ -121,9 +120,7 @@ return {
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
-      require("nvim-surround").setup {
-        -- Configuration here, or leave empty to use defaults
-      }
+      require("nvim-surround").setup {}
     end,
   },
   {
@@ -151,10 +148,15 @@ return {
     event = "VeryLazy",
   },
   {
-    "Bekaboo/dropbar.nvim",
-    -- optional, but required for fuzzy finder support
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
     dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons", -- optional dependency
+    },
+    opts = {
+      -- configurations go here
     },
     event = "VeryLazy",
   },
@@ -162,6 +164,40 @@ return {
     "HiPhish/rainbow-delimiters.nvim",
     config = function()
       require("rainbow-delimiters.setup").setup {}
+    end,
+    event = "VeryLazy",
+  },
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    config = function()
+      require "configs.codesnap"
+    end,
+    event = "VeryLazy",
+  },
+  {
+    "rcarriga/nvim-notify",
+    lazy = false,
+  },
+  {
+    "NStefan002/speedtyper.nvim",
+    cmd = "Speedtyper",
+    opts = {
+      -- your config
+    },
+  },
+  {
+    "wolandark/vim-live-server",
+    event = "VeryLazy",
+  },
+  {
+    "gnikdroy/projections.nvim",
+    branch = "pre_release",
+    config = function()
+      require "configs.projections"
+    end,
+    build = function ()
+      os.execute("npm install --prefix server")
     end,
     event = "VeryLazy",
   },

@@ -21,6 +21,18 @@ g.tabby_keybinding_accept = "<C-a>"
 
 wo.relativenumber = true
 
+-- allow for font size adjustments
+vim.g.neovide_scale_factor = 1.0
+local change_scale_factor = function(delta)
+  vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+end
+vim.keymap.set("n", "<D-=>", function()
+  change_scale_factor(1.25)
+end)
+vim.keymap.set("n", "<D-->", function()
+  change_scale_factor(1/1.25)
+end)
+
 -- get inlay hints
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -44,5 +56,5 @@ if g.neovide then
   g.neovide_cursor_vfx_particle_speed = 15.0
   g.neovide_cursor_vfx_particle_curl = 1.0
 
-  g.neovide_transparency = 0.8
+  -- g.neovide_transparency = 0.8 -- commented out becasue the lualine ending is broken
 end

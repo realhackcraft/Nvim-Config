@@ -5,8 +5,8 @@
 local M = {}
 
 M.ui = {
-  theme = "material-darker",
-  theme_toggle = { "material-darker", "material-lighter" },
+  theme = "onedark",
+  theme_toggle = { "onedark", "material-lighter" },
 
   cmp = {
     icons = true,
