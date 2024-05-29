@@ -38,6 +38,11 @@ return {
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
+    opts = {
+      inlay_hints = { 
+        enabled = true
+      },
+    },
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -200,5 +205,8 @@ return {
       os.execute("npm install --prefix server")
     end,
     event = "VeryLazy",
+  },
+  {
+    "barreiroleo/ltex-extra.nvim"
   },
 }

@@ -4,9 +4,9 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local markdown_oxide_capabilities = require("nvchad.configs.lspconfig").capabilities
 markdown_oxide_capabilities.workspace = {
-    didChangeWatchedFiles = {
-      dynamicRegistration = true,
-    },
+  didChangeWatchedFiles = {
+    dynamicRegistration = true,
+  },
 }
 
 local MY_FQBN = "arduino:avr:leonardo"
@@ -18,38 +18,83 @@ require("mason-lspconfig").setup_handlers {
   -- The first entry (without a key) will be the default handler
   -- and will be called for each installed server that doesn't have
   -- a dedicated handler.
-  function (server_name) -- default handler (optional)
+  function(server_name) -- default handler (optional)
     require("lspconfig")[server_name].setup {
       on_attach = on_attach,
       on_init = on_init,
       capabilities = capabilities,
     }
-
   end,
   -- Next, you can provide a dedicated handler for specific servers.
   -- For example, a handler override for the `rust_analyzer`:
-  ["markdown_oxide"] = function ()
+  ["markdown_oxide"] = function()
     require("lspconfig")["markdown_oxide"].setup {
       on_attach = on_attach,
       on_init = on_init,
       capabilities = markdown_oxide_capabilities,
     }
   end,
-  ["arduino_language_server"] = function ()
+  ["arduino_language_server"] = function()
     require("lspconfig")["arduino_language_server"].setup {
       on_attach = on_attach,
       on_init = on_init,
       capabilities = capabilities,
       cmd = {
         "arduino-language-server",
-        "-cli-config", "$HOME/.arduino15/arduino-cli.yaml",
+        "-cli-config",
+        "$HOME/.arduino15/arduino-cli.yaml",
         "-fqbn",
-        MY_FQBN
-      }
+        MY_FQBN,
+      },
     }
-  end
+  end,
+  ["ltex"] = function()
+    require("lspconfig")["ltex"].setup {
+      on_attach = function(client, bufnr)
+        -- rest of your on_attach process.
+        on_attach(client, bufnr)
+        require("ltex_extra").setup {
+          load_langs = { "en-CA" },
+        }
+      end,
+      on_init = on_init,
+      capabilities = capabilities,
+      filetypes = {
+        "bib",
+        "gitcommit",
+        "markdown",
+        "org",
+        "plaintex",
+        "rst",
+        "rnoweb",
+        "tex",
+        "pandoc",
+        "quarto",
+        "rmd",
+        "context",
+        "mail",
+        "text",
+      },
+      settings = {
+        ltex = {
+          language = "en-CA"
+        }
+      },
+    }
+  end,
 }
 
+require("lspconfig")["sourcekit"].setup {
+  on_init = on_init,
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+  },
+  filetypes = {
+    "swift",
+  },
+}
 
 -- KEYBINDS
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {})

@@ -4,10 +4,6 @@ local o = vim.o
 local g = vim.g
 local wo = vim.wo
 
-local alpha = function()
-  return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
-end
-
 o.cursorlineopt = "both" -- to enable cursorline!
 o.colorcolumn = "80"
 o.termguicolors = true
@@ -32,18 +28,6 @@ end)
 vim.keymap.set("n", "<D-->", function()
   change_scale_factor(1/1.25)
 end)
-
--- get inlay hints
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint.enable(nil, nil)
-    end
-    -- whatever other lsp config you want
-  end,
-})
 
 -- neovide config
 if g.neovide then
