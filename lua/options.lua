@@ -15,6 +15,8 @@ g.python_indent = {}
 
 g.tabby_keybinding_accept = "<C-a>"
 
+g.python3_host_prog = "usr/"
+
 wo.relativenumber = true
 
 -- allow for font size adjustments

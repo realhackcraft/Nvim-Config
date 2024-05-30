@@ -39,8 +39,8 @@ return {
       require "configs.lspconfig"
     end,
     opts = {
-      inlay_hints = { 
-        enabled = true
+      inlay_hints = {
+        enabled = true,
       },
     },
   },
@@ -129,17 +129,6 @@ return {
     end,
   },
   {
-    "MeanderingProgrammer/markdown.nvim",
-    name = "render-markdown",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      require("render-markdown").setup {}
-    end,
-    event = "VeryLazy",
-  },
-  {
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim", -- required
@@ -201,12 +190,41 @@ return {
     config = function()
       require "configs.projections"
     end,
-    build = function ()
-      os.execute("npm install --prefix server")
+    build = function()
+      os.execute "npm install --prefix server"
     end,
     event = "VeryLazy",
   },
   {
-    "barreiroleo/ltex-extra.nvim"
+    "barreiroleo/ltex-extra.nvim",
+  },
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+    -- event = {
+    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+    --   "BufReadPre path/to/my-vault/**.md",
+    --   "BufNewFile path/to/my-vault/**.md",
+    -- },
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+
+      -- see below for full list of optional dependencies 👇
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "School",
+          path = "~/Documents/School/",
+        },
+      },
+
+      -- see below for full list of options 👇
+    },
   },
 }
