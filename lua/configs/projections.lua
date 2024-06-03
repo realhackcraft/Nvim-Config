@@ -1,8 +1,8 @@
 require("projections").setup {
-  workspaces = { -- Default workspaces to search for
+  workspaces = {                    -- Default workspaces to search for
     { "~/Documents/", { ".git" } }, -- Documents/dev is a workspace. patterns = { ".git" }
-    { "~/repos", {} }, -- An empty pattern list indicates that all subdirectories are considered projects
-    "~/dev", -- dev is a workspace. default patterns is used (specified below)
+    { "~/repos",      {} },         -- An empty pattern list indicates that all subdirectories are considered projects
+    "~/dev",                        -- dev is a workspace. default patterns is used (specified below)
     "~",
     "~/.config/",
   },

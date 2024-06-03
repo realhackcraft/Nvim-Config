@@ -1,5 +1,23 @@
 return {
   {
+    "hrsh7th/nvim-cmp",
+    opts = function()
+      local cmp = require "cmp"
+      local conf = require "nvchad.configs.cmp"
+
+      local mymappings = {
+        ["<Up>"] = cmp.mapping.select_prev_item(),
+        ["<Down>"] = cmp.mapping.select_next_item(),
+        ["<Tab>"] = cmp.mapping.confirm {
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true,
+        },
+      }
+      conf.mapping = vim.tbl_deep_extend("force", conf.mapping, mymappings)
+      return conf
+    end,
+  },
+  {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
@@ -8,9 +26,9 @@ return {
         -- Customize or remove this keymap to your liking
         "<leader>fmt",
         function()
-          require("conform").format { async = true, lsp_fallback = true }
+          require("conform").format { lsp_fallback = true }
         end,
-        mode = "",
+        mode = "n",
         desc = "Format buffer",
       },
     },
@@ -89,11 +107,11 @@ return {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "folke/trouble.nvim" },
     opts = {},
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
   },
   {
     "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     config = function(_)
       require "configs.lsp_signature"
     end,
@@ -103,7 +121,7 @@ return {
     config = function()
       require("numb").setup()
     end,
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
   },
   {
     "jay-babu/mason-null-ls.nvim",
@@ -122,7 +140,6 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup {}
@@ -131,7 +148,7 @@ return {
   {
     "NeogitOrg/neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- required
+      "nvim-lua/plenary.nvim",  -- required
       "sindrets/diffview.nvim", -- optional - Diff integration
 
       -- Only one of these is needed, not both.
@@ -179,9 +196,6 @@ return {
     opts = {
       -- your config
     },
-  },
-  {
-    "wolandark/vim-live-server",
     event = "VeryLazy",
   },
   {
@@ -215,6 +229,9 @@ return {
       "nvim-lua/plenary.nvim",
 
       -- see below for full list of optional dependencies 👇
+      "hrsh7th/nvim-cmp",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter",
     },
     opts = {
       workspaces = {
@@ -223,8 +240,13 @@ return {
           path = "~/Documents/School/",
         },
       },
-
-      -- see below for full list of options 👇
     },
+  },
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("telescope").load_extension "notify"
+      vim.notify = require "notify"
+    end,
   },
 }

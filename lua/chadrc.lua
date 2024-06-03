@@ -21,6 +21,7 @@ M.ui = {
     order = nil,
     modules = nil,
   },
+  telescope = { style = "bordered" },
   tabufline = {
     enabled = true,
     lazyload = true,
