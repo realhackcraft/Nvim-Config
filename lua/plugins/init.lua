@@ -41,6 +41,7 @@ return {
   },
   {
     "TabbyML/vim-tabby",
+    lazy = false,
   },
   {
     "iamcco/markdown-preview.nvim",

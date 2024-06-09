@@ -1,8 +1,10 @@
+table.unpack = table.unpack or unpack
+
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local markdown_oxide_capabilities = require("nvchad.configs.lspconfig").capabilities
+local markdown_oxide_capabilities = { table.unpack(require("nvchad.configs.lspconfig").capabilities) }
 markdown_oxide_capabilities.workspace = {
   didChangeWatchedFiles = {
     dynamicRegistration = true,
@@ -26,7 +28,6 @@ require("mason-lspconfig").setup_handlers {
     }
   end,
   -- Next, you can provide a dedicated handler for specific servers.
-  -- For example, a handler override for the `rust_analyzer`:
   ["markdown_oxide"] = function()
     require("lspconfig")["markdown_oxide"].setup {
       on_attach = on_attach,
@@ -77,8 +78,8 @@ require("mason-lspconfig").setup_handlers {
       },
       settings = {
         ltex = {
-          language = "en-CA"
-        }
+          language = "en-CA",
+        },
       },
     }
   end,
