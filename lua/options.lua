@@ -13,6 +13,9 @@ o.guicursor =
 g.editorconfig = true
 g.python_indent = {}
 
+g.python3_host_prog = "/usr/local/bin/python3"
+g.loaded_python3_provider = 1
+
 g.tabby_keybinding_accept = "<C-a>"
 
 g.python3_host_prog = "usr/"

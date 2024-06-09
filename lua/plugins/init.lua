@@ -26,7 +26,7 @@ return {
         -- Customize or remove this keymap to your liking
         "<leader>fmt",
         function()
-          require("conform").format { lsp_fallback = true }
+          require("conform").format { async = true, lsp_fallback = true }
         end,
         mode = "n",
         desc = "Format buffer",
@@ -57,11 +57,6 @@ return {
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
-    opts = {
-      inlay_hints = {
-        enabled = true,
-      },
-    },
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -205,16 +200,21 @@ return {
     config = function()
       require "configs.projections"
     end,
-    build = function()
-      os.execute "npm install --prefix server"
+    build = function ()
+      os.execute("npm install --prefix server")
     end,
     event = "VeryLazy",
   },
   {
     "barreiroleo/ltex-extra.nvim",
+    event = "VeryLazy"
   },
   {
-    "epwalsh/obsidian.nvim",
+    "jalvesaq/zotcite",
+    event = "VeryLazy"
+  },
+  {
+    "jalvesaq/cmp-zotcite",
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
     ft = "markdown",
