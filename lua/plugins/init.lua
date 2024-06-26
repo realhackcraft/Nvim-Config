@@ -1,21 +1,6 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    opts = function()
-      local cmp = require "cmp"
-      local conf = require "nvchad.configs.cmp"
-
-      local mymappings = {
-        ["<Up>"] = cmp.mapping.select_prev_item(),
-        ["<Down>"] = cmp.mapping.select_next_item(),
-        ["<Tab>"] = cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        },
-      }
-      conf.mapping = vim.tbl_deep_extend("force", conf.mapping, mymappings)
-      return conf
-    end,
   },
   {
     "stevearc/conform.nvim",
@@ -88,6 +73,10 @@ return {
         "bash",
       },
       auto_install = true,
+    },
+    dependencies = {
+      -- NOTE: additional parser
+      { "nushell/tree-sitter-nu" },
     },
   },
   {
@@ -249,5 +238,53 @@ return {
       require("telescope").load_extension "notify"
       vim.notify = require "notify"
     end,
+  },
+  {
+    "tris203/precognition.nvim",
+    event = "VeryLazy",
+    opts = {
+      startVisible = true,
+      showBlankVirtLine = true,
+      highlightColor = { link = "Comment" },
+      hints = {
+        Caret = { text = "^", prio = 2 },
+        Dollar = { text = "$", prio = 1 },
+        MatchingPair = { text = "%", prio = 5 },
+        Zero = { text = "0", prio = 1 },
+        w = { text = "w", prio = 10 },
+        b = { text = "b", prio = 9 },
+        e = { text = "e", prio = 8 },
+        W = { text = "W", prio = 7 },
+        B = { text = "B", prio = 6 },
+        E = { text = "E", prio = 5 },
+      },
+      gutterHints = {
+        G = { text = "G", prio = 10 },
+        gg = { text = "gg", prio = 9 },
+        PrevParagraph = { text = "{", prio = 8 },
+        NextParagraph = { text = "}", prio = 8 },
+      },
+    },
+  },
+  {
+    "folke/zen-mode.nvim",
+    event = "VeryLazy",
+    opts = {
+      plugins = {
+        alacritty = {
+          enabled = true,
+          font = "20", -- font size
+        },
+      },
+    },
+  },
+  {
+    "folke/twilight.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
   },
 }

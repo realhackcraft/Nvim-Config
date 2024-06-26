@@ -5,8 +5,10 @@
 local M = {}
 
 M.ui = {
-  theme = "onedark",
-  theme_toggle = { "onedark", "material-lighter" },
+  theme = "gruvbox",
+  theme_toggle = { "gruvbox", "gruvbox_light" },
+
+  transparency = true,
 
   cmp = {
     icons = true,
@@ -17,7 +19,7 @@ M.ui = {
     theme = "default", -- default/vscode/vscode_colored/minimal
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
-    separator_style = "default",
+    separator_style = "arrow",
     order = nil,
     modules = nil,
   },
@@ -53,8 +55,8 @@ M.ui = {
     },
   },
   hl_override = {
-    Comment = { italic = true },
-    ["@comment"] = { italic = true },
+    Comment = { italic = true, fg = "#808080" },
+    ["@comment"] = { italic = true, fg = "#808080" },
   },
 }
 
