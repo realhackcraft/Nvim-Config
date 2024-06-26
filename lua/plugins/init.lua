@@ -25,10 +25,6 @@ return {
     end,
   },
   {
-    "TabbyML/vim-tabby",
-    lazy = false,
-  },
-  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
@@ -189,18 +185,18 @@ return {
     config = function()
       require "configs.projections"
     end,
-    build = function ()
-      os.execute("npm install --prefix server")
+    build = function()
+      os.execute "npm install --prefix server"
     end,
     event = "VeryLazy",
   },
   {
     "barreiroleo/ltex-extra.nvim",
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
   {
     "jalvesaq/zotcite",
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
   {
     "jalvesaq/cmp-zotcite",
