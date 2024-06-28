@@ -1,2 +1,6 @@
 # Config
-This is my neovim config. It uses NvChad and Neovide.
+
+Make sure you have a pyenv named "nvim" with packages:
+
+- `pynvim >= 0.5.0`
+- `pyyaml >= 6.0.1`
