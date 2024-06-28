@@ -12,12 +12,11 @@ o.guicursor =
 g.editorconfig = true
 g.python_indent = {}
 
-g.python3_host_prog = "/usr/local/bin/python3"
-g.loaded_python3_provider = 1
+g.loaded_python3_provider = nil
 
-g.tabby_keybinding_accept = "<C-a>"
+g.python3_host_prog = "$HOME/.pyenv/versions/nvim/bin/python3"
 
-g.python3_host_prog = "$HOME/.pyenv/shims/python3"
+-- g.tabby_keybinding_accept = "<C-a>"
 
 wo.relativenumber = true
 
